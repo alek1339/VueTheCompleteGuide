@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+</head>
+
+
+<body>
+    <div id="app">
+        <input type="text" v-on:input='changeTitle'>
+        <h1 v-once>{{ title }}</h1>
+        <p>{{title}}</p>
+        <a :href="link">sportal</a>
+        <p v-html="finishedLink"></p>
+        <p>{{ counter }}</p>
+        <button @click='increase(2, $event)'>Increase</button>
+        <button @click='decrease(2)'>Decrease</button>
+        <button @click='counter++'>Increse with one</button>
+        <p>{{result()}}</p>
+        <br>
+        <input type="text" @keyup.enter='alertMe'>
+        <input type="text" @keyup.space='alertMe'>
+        <input type="text" @input='changeTitle'>
+        <!-- <p v-on:mousemove='updateCoordinates'>coordinates: {{ x }} / {{ y }}</p> -->
+        <input type="text" v-model='twoWayBinded'>
+        <p>{{ twoWayBinded }}</p>
+    </div>
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                title: 'Hello My World!',
+                link: 'https://www.sportal.bg/',
+                finishedLink: '<a href="https://www.sportal.bg/">sporta</a>',
+                counter: 0,
+                x: 0,
+                y: 0,
+                twoWayBinded: 'Two way binding'
+            },
+            methods: {
+                changeTitle: function (event) {
+                    this.title = event.target.value
+                },
+                increase: function (step, event) {
+                    this.counter += step
+                }
+                ,
+                decrease: function (step) {
+                    this.counter -= step
+                },
+                alertMe: function () {
+                    alert('La')
+                },
+                result() {
+                    return this.counter > 5 ? 'Greater than 5' : 'Smaller than 5'
+                }
+                // updateCoordinates(event) {
+                //     this.x = event.clientX
+                //     this.y = event.clientY
+                // }
+            },
+            watch: {
+                counter: function (value) {
+                    var vm = this
+                    setTimeout(function () {
+                        vm.counter = 0;
+                    }, 2000)
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

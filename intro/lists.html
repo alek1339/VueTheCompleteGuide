@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Conditions</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <div id="app">
+        <ul>
+            <li v-for='(ingrediant, i) in ingrediants' :key='ingrediant'>{{ ingrediant}} ({{ i }}) </li>
+        </ul>
+
+        <ul>
+            <li v-for='person in persons'>
+                <div v-for="(value, key, index ) in person">{{key }}: {{ value }} ({{ index }})</div>
+            </li>
+        </ul>
+        <input type="text" v-model='newIngrediant'>
+        <button @click='ingrediants.push("newIngrediant")'>Spices</button>
+        <span v-for='n in 10'>{{ n }} <br></span>
+        {{newIngrediant}}
+    </div>
+    <hr>
+
+</body>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            ingrediants: ['meat', 'fruit', 'cookies'],
+            persons: [
+                { name: 'Max', age: 27, color: 'red' },
+                { name: 'Anna', age: 'unknown', color: 'blue' }
+            ],
+            newIngrediant: 'newIngrediant'
+        }
+    })
+</script>
+
+</html>

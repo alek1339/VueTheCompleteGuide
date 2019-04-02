@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+    <style>
+        .demo {
+            width: 100px;
+            height: 100px;
+            background-color: gray;
+            display: inline-block;
+            margin: 10px;
+        }
+
+        .brown {
+            background-color: brown;
+        }
+
+        .yellow {
+            background-color: yellow;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+    </style>
+
+    <div id="app">
+        <div class="demo" @click='attachBrown = !attachBrown' :class='divClasses'></div>
+        <div class="demo" :class='{brown: attachBrown}'></div>
+        <div class="demo" :style="{backgroundColor: color}"></div>
+        <div class="demo" :class='color'> </div>
+        <div class="demo" :style='myStyle'> </div>
+        <hr>
+        <input type="text" v-model="color">
+        <input type="text" v-model="width">
+
+        <p>{{ sayHello() }}</p>
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                attachBrown: false,
+                color: 'yellow',
+                width: 70,
+                title: 'Hello World'
+            },
+            computed: {
+                divClasses: function () {
+                    return {
+                        brown: this.attachBrown,
+                        blue: !this.attachBrown
+                    }
+                },
+                myStyle: function () {
+                    return {
+                        backgroundColor: this.color,
+                        width: this.width + 'px'
+                    }
+                }
+            },
+            methods: {
+                sayHello() {
+                    return this.title
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
